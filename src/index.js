@@ -1,17 +1,61 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import Root from "./root";
+import HomePage from "./pages/homePage";
+import About from "./pages/aboutUs";
+import ContactUs from "./pages/contactUs";
+import JoinUs from "./pages/joinUs";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import HomePage2 from "./pages/homePage2";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      {
+        path: "/",
+        element: (
+          <>
+            {" "}
+            <HomePage /> <HomePage2 />
+          </>
+        ),
+      },
+      {
+        path: "home",
+        element: (
+          <>
+            {" "}
+            <HomePage /> <HomePage2 />
+          </>
+        ),
+      },
+      { path: "about", element: <About /> },
+      { path: "contact", element: <ContactUs /> },
+      { path: "joinus", element: <JoinUs /> },
+      { path: "login", element: <Login /> },
+      { path: "signup", element: <Signup /> },
+      {
+        path: "homepage2",
+        element: (
+          <>
+            {" "}
+            <HomePage2 />
+            <HomePage />
+          </>
+        ),
+      },
+    ],
+  },
+]);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
